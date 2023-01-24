@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesused.css" />
+  </head>
+  <body>
+    <main class="encrypter">
+      <div class="encrypter-get">
+        <img src="A-lura.png" />
+        <p>Developed by Moises Lopez</p>
+        <div class="encrypter-get__input">
+          <textarea
+            class="message"
+            placeholder="Type message to be Encypted or Decrypted"
+          ></textarea>
+        </div>
+        
+        <div class="encrypter-get__buttons">
+          <div class="alert">
+            <img src="vectorII.png" />
+            <span>No capitalized letters or special characters</span>
+          </div>
+
+          <div class="buttons">
+            <button class="encp">Encrypt</button>
+            <button class="decp">Decrypt</button>
+          </div>
+        </div>
+      </div>
+      <div class="encrypter-all">
+        <textarea class="encrypter-all__result"></textarea>
+        <div class="encrypter-all__copy">
+          <button class="copy">Copy</button>
+        </div>
+        <div class="encrypter-all__search">
+          <img src="searchlogo.png" />
+        </div>
+      </div>
+    </main>
+    <script src="./js/index.js"></script>
+  </body>
+  <footer>Developed under Alura's tutoring</footer>
+</html>
+
+
+<script>
+
+const encryptar = document.querySelector(".encp");
+const decrypt = document.querySelector(".decp");
+const copy = document.querySelector(".copy");
+
+//buttons to encrypt
+encryptar.addEventListener("click", () => {
+  let message = document.querySelector(".message").value;
+  let text = message.replace(/e/gim, "enter");
+  text = text.replace(/o/gim, "ober");
+  text = text.replace(/i/gim, "imes");
+  text = text.replace(/a/gim, "ai");
+  text = text.replace(/u/gim, "ufat");
+
+  const insert = document.querySelector(".encrypter-all__result");
+  insert.innerHTML = text;
+  document.querySelector(".message").value = "";
+  document.querySelector(".encrypter-all__search").style.display = "none";
+  document.querySelector(".copy").style.display = "block";
+  document.querySelector(".encrypter-all__result").style.display = "block";
+});
+
+//button to decrypt
+decrypt.addEventListener("click", () => {
+  let message = document.querySelector(".message").value;
+  let text = message.replace(/enter/gim, "e");
+  text = text.replace(/ober/gim, "o");
+  text = text.replace(/imes/gim, "i");
+  text = text.replace(/ai/gim, "a");
+  text = text.replace(/ufat/gim, "u");
+
+  const insert = document.querySelector(".encrypter-all__result");
+  insert.textContent = text;
+  document.querySelector(".message").value = "";
+  document.querySelector(".encrypter-all__search").style.display = "none";
+  document.querySelector(".copy").style.display = "block";
+  document.querySelector(".encrypter-all__result").style.display = "block";
+});
+
+//button to copy
+copy.addEventListener("click", () => {
+  const message = document.querySelector(".encrypter-all__result");
+  console.log(message.textContent);
+  const insert = document.querySelector(".message");
+  insert.value = message.textContent;
+  document.querySelector(".encrypter-all__result").innerHTML = "";
+  document.querySelector(".copy").style.display = "none";
+  document.querySelector(".encrypter-all__result").style.display = "none";
+  document.querySelector(".encrypter-all__search").style.display = "block";
+});
+
+
+</script>
+
